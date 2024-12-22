@@ -21,9 +21,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Set GH_TOKEN
+        run: echo GH_TOKEN=${{ secrets.GH_TOKEN }} >> $GITHUB_ENV
+
       - name: Build Electron app
-        env:
-          GH_TOKEN: ${{ env.GH_TOKEN }}
         run: npm run build
 
       - name: Create release
@@ -33,4 +34,4 @@ jobs:
             release-builds/*.exe
             release-builds/latest.yml
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
