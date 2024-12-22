@@ -1,85 +1,50 @@
 {
   "name": "s3rp3nt",
-  "version": "1.0.11",
+  "version": "1.0.15",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "pack": "electron-forge pack",
-    "publish": "electron-forge publish"
+    "start": "electron .",
+    "build": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
   },
   "keywords": [],
   "author": "Motan",
   "license": "ISC",
-  "description": "An Electron app with Squirrel installer and auto-update functionality",
+  "description": "An Electron app with auto-update functionality",
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.1",
     "electron-updater": "^5.3.0"
   },
   "devDependencies": {
-    "@electron-forge/cli": "^7.6.0",
-    "@electron-forge/maker-deb": "^7.6.0",
-    "@electron-forge/maker-rpm": "^7.6.0",
-    "@electron-forge/maker-squirrel": "^7.6.0",
-    "@electron-forge/maker-zip": "^7.6.0",
-    "@electron-forge/plugin-auto-unpack-natives": "^7.6.0",
-    "@electron-forge/plugin-fuses": "^7.6.0",
-    "@electron/fuses": "^1.8.0",
-    "electron": "^33.2.1"
-  },
-  "config": {
-    "forge": {
-      "packagerConfig": {
-        "icon": "assets/icons/icon"
-      },
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "s3rp3nt",
-            "authors": "Motan",
-            "exe": "s3rp3nt.exe",
-            "setupExe": "s3rp3ntInstaller.exe",
-            "noMsi": true
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/MotanOfficial/s3rp3nt.git"
+    "electron-builder": "^23.6.0",
+    "electron": "33.2.1"
   },
   "build": {
     "appId": "com.motan.s3rp3nt",
     "productName": "s3rp3nt",
+    "directories": {
+      "output": "release-builds"
+    },
     "win": {
-      "target": "squirrel",
-      "icon": "assets/icons/icon.ico"
-    }
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "path/to/your/icon.ico"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "MotanOfficial",
+        "repo": "s3rp3nt",
+        "token": "${env.GH_TOKEN}"
+      }
+    ]
   },
-  "release": {
-    "git": {
-      "tag": true,
-      "tagPrefix": "v",
-      "tagName": "v${version}",
-      "commitMessage": "Release v${version}"
-    }
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MotanOfficial/s3rp3nt.git"
   }
 }
