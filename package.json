@@ -1,6 +1,6 @@
 {
-  "name": "my-electron-app",
-  "version": "1.0.7",
+  "name": "s3rp3nt",
+  "version": "1.0.8",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,7 +11,7 @@
     "publish": "electron-forge publish"
   },
   "keywords": [],
-  "author": "Your Name",
+  "author": "Motan",
   "license": "ISC",
   "description": "An Electron app with Squirrel installer and auto-update functionality",
   "dependencies": {
@@ -31,15 +31,17 @@
   },
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "icon": "assets/icons/icon"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "my_electron_app",
-            "authors": "Your Name",
-            "exe": "my-electron-app.exe",
-            "setupExe": "MyElectronAppInstaller.exe",
+            "name": "s3rp3nt",
+            "authors": "Motan",
+            "exe": "s3rp3nt.exe",
+            "setupExe": "s3rp3ntInstaller.exe",
             "noMsi": true
           }
         },
@@ -62,13 +64,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/my-electron-app.git"
+    "url": "https://github.com/MotanOfficial/s3rp3nt.git"
   },
   "build": {
-    "appId": "com.yourname.myelectronapp",
-    "productName": "My Electron App",
+    "appId": "com.motan.s3rp3nt",
+    "productName": "s3rp3nt",
     "win": {
-      "target": "squirrel"
+      "target": "squirrel",
+      "icon": "assets/icons/icon.ico"
     }
   },
   "release": {
